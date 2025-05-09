@@ -3,3 +3,14 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+    
+
+app_chat_index:              # C'est le nom de la route (peut être ce que vous voulez)
+    path: /chat              # L'URL que l'utilisateur visitera
+    controller: App\Controller\ChatController::index # Le contrôleur et la méthode à exécuter
+    methods: [GET]           # La méthode HTTP autorisée (ici, seulement GET)
+
+app_chat_send:            # Nouvelle route
+    path: /chat/send
+    controller: App\Controller\ChatController::send
+    methods: [POST]

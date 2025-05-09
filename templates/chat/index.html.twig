@@ -1,0 +1,28 @@
+{# templates/chat/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}Chat MVC{% endblock %}
+{% block body %}
+<h1>Chat MVC</h1>
+<div id="chatbox" style="height: 400px; border: 1px solid #ccc; overflow-y: scroll; margin-bottom: 10px; padding: 10px;">
+    {% for message in messages %}
+        <p><strong>{{ message.sender == 'user' ? 'Vous' : 'Bot' }}:</strong> {{ message.content }} <em style="font-size:0.8em;color:grey;">({{ message.sentAt|date('H:i') }})</em></p>
+    {% else %}
+        <p><strong>Bot:</strong> Démarrez la conversation.</p>
+    {% endfor %}
+</div>
+<form id="messageForm">
+    <input type="text" id="userInput" placeholder="Votre message..." style="width: 80%;" autocomplete="off" required>
+    <button type="submit">Envoyer</button>
+</form>
+{% endblock %}
+{% block javascripts %}
+    {# Si vous utilisez Webpack Encore / AssetMapper #}
+     <script src="{{ asset('app.js') }}" defer></script> {# Ou le nom de votre fichier JS #}
+{% endblock %}
+
+{% block javascripts %}
+    {# Si vous héritez d'un base.html.twig qui a déjà des scripts : #}
+    {# {{ parent() }} #}
+
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
